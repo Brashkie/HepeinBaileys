@@ -44,53 +44,6 @@
 
 ---
 
-<!-- Animated feature grid -->
-<style>
-/* Puede que algunos hosts (p.ej. GitHub) ignoren <style>. En VS Code y muchos renderizadores sí funciona. */
-:root { --card:#0f172a; --text:#e5e7eb; --muted:#94a3b8; --ring:#22d3ee; }
-.grid {
-  display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-.card {
-  background: var(--card);
-  color: var(--text);
-  border-radius: 16px;
-  padding: 16px;
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 6px 24px rgba(0,0,0,.25);
-  position: relative;
-  overflow: hidden;
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-.card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,.35); }
-.card .spark {
-  position:absolute; inset:-1px; border-radius:16px;
-  background: conic-gradient(from 0deg, #00D1FF, #39FF14, #8A2BE2, #00D1FF);
-  filter: blur(18px); opacity:.18; animation: spin 6s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.tag {
-  display:inline-block; font-size:12px; color:var(--muted); border:1px solid rgba(255,255,255,0.12);
-  padding:4px 8px; border-radius:999px; margin-bottom:8px;
-}
-.kf { display:flex; gap:10px; align-items:flex-start; }
-.kf b { font-size:16px; }
-.kf p { margin:4px 0 0; color:var(--muted); font-size:13px; line-height:1.35; }
-.shimmer {
-  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.16), rgba(255,255,255,0.06));
-  background-size: 200% 100%;
-  animation: shimmer 2.5s infinite;
-  height: 8px; border-radius: 6px; margin-top: 10px;
-}
-@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-.btn {
-  display:inline-block; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,0.12);
-  text-decoration:none; color:white; margin-right:8px; font-weight:600;
-}
-.btn:hover { box-shadow:0 6px 22px rgba(34,211,238,.2); }
-.primary { border-color: var(--ring); }
-</style>
-
 ## 🚀 Características
 
 <div class="grid">
@@ -173,3 +126,4 @@ echo "import { makeWASocket } from 'hepeinbaileys';" > index.js
 
 # 3) Ejecuta
 node index.js
+
