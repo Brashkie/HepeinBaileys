@@ -51,7 +51,7 @@
     <div class="spark"></div>
     <span class="tag">🔐 Seguridad</span>
     <div class="kf">
-      <div>🔐</div>
+      <div>(つ▀¯▀)つ━━━━━━━━━</div>
       <div>
         <b>Cifrado personalizado para grupos</b>
         <p>Refuerza el intercambio de claves y el manejo de mensajes protegidos en entornos multiusuario.</p>
@@ -64,7 +64,7 @@
     <div class="spark"></div>
     <span class="tag">🧠 Sesiones</span>
     <div class="kf">
-      <div>🧠</div>
+      <div>(つ▀¯▀)つ━━━━━━━━━</div>
       <div>
         <b>Construcción de sesiones grupales</b>
         <p>Administra estados por grupo con recuperación automática y aislamiento de contexto.</p>
@@ -103,7 +103,7 @@
     <div class="spark"></div>
     <span class="tag">⚡ Core</span>
     <div class="kf">
-      <div>⚡</div>
+      <div>(つ▀¯▀)つ━━━━━━━━━</div>
       <div>
         <b>Basado en JavaScript puro</b>
         <p>Sin dependencias innecesarias. Limpio, mínimo y fácil de extender.</p>
@@ -127,3 +127,28 @@ echo "import { makeWASocket } from 'hepeinbaileys';" > index.js
 # 3) Ejecuta
 node index.js
 
+```
+
+
+## ✨ Uso Basico
+
+```bash
+import { makeWASocket, useMultiFileAuthState } from 'hepeinbaileys'
+
+const start = async () => {
+  const { state, saveCreds } = await useMultiFileAuthState('./auth')
+  const sock = makeWASocket({ printQRInTerminal: true, auth: state })
+
+  sock.ev.on('creds.update', saveCreds)
+  sock.ev.on('messages.upsert', ({ messages }) => {
+    const m = messages[0]
+    if (!m?.message) return
+    if ((m.message.conversation || '').toLowerCase() === 'ping') {
+      sock.sendMessage(m.key.remoteJid, { text: 'pong 🏓' })
+    }
+  })
+}
+
+start().catch(console.error)
+
+```
