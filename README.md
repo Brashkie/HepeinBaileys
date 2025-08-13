@@ -77,7 +77,7 @@
     <div class="spark"></div>
     <span class="tag">📡 Protocolos</span>
     <div class="kf">
-      <div>📡</div>
+      <div>(つ▀¯▀)つ━━━━━━━━━</div>
       <div>
         <b>Protocolos de señal</b>
         <p>Intercambio seguro y confiable para dispositivos enlazados y mensajería en tiempo real.</p>
