@@ -90,7 +90,7 @@
     <div class="spark"></div>
     <span class="tag">🛠️ Deploy</span>
     <div class="kf">
-      <div>🛠️</div>
+      <div>(つ▀¯▀)つ━━━━━━━━━</div>
       <div>
         <b>Integración con Heroku (opcional)</b>
         <p>Variables, buildpacks y sesiones listas para subir a producción en minutos.</p>
