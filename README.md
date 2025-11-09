@@ -6,10 +6,10 @@
 <h1 align="center">🥃 HepeinBaileys</h1>
 
 <p align="center">
-  <em>Versión extendida y mejorada de Baileys para WhatsApp Web, con enfoque en estabilidad, seguridad, IA y sesiones avanzadas.</em>
+  <em>Fork mejorado de Baileys enfocado en estabilidad, seguridad, sesiones avanzadas e integración con IA.</em>
 </p>
 
-<!-- Animated underline (SVG) -->
+<!-- Animated underline -->
 <p align="center">
   <svg width="420" height="16" viewBox="0 0 420 16" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
@@ -28,79 +28,74 @@
 <!-- Badges -->
 <p align="center">
   <img alt="Node" src="https://img.shields.io/badge/Node.js-18%2B-43853D?logo=nodedotjs&logoColor=white" />
-  <img alt="TypeScript/JS" src="https://img.shields.io/badge/JS_Puro-Sí-3178C6?logo=javascript&logoColor=white" />
-  <img alt="Status" src="https://img.shields.io/badge/Estado-En%20Mantenimiento-yellow" />
+  <img alt="JS" src="https://img.shields.io/badge/JavaScript-Puro-3178C6?logo=javascript&logoColor=white" />
+  <img alt="Dev Status" src="https://img.shields.io/badge/Estado-En%20Mantenimiento-yellow" />
   <img alt="License" src="https://img.shields.io/badge/License-MIT-blue" />
 </p>
-
-<div align="center">
-  <img alt="banner" src="https://capsule-render.vercel.app/api?type=rect&color=0:111111,100:1f2937&height=10&section=header&animation=fadeIn"/>
-</div>
 
 ---
 
 # 🔧 Estado del Proyecto
+
 > **HepeinBaileys está actualmente en mantenimiento y desarrollo activo.**  
-> Se están agregando nuevas funciones, mejoras de reconexión, seguridad adicional, soporte multi-sesión real, IA integrada y un sistema avanzado de plugins.  
-> Puedes usarlo, pero algunas funciones pueden cambiar entre versiones.
+> Todavía se están agregando funciones, optimizaciones, mejoras de estabilidad y módulos internos.  
+> Algunas versiones pueden cambiar rápido mientras se terminan las nuevas características principales:
+
+✅ Reconexión más estable  
+✅ Nuevos métodos para grupos  
+✅ Base para plugins oficiales  
+✅ Preparación para IA integrada  
+✅ Mejoras en cifrado  
+✅ Limpieza del core
+
+Si quieres seguir el progreso, revisa los commits.
 
 ---
 
-# 🚀 Características
+# 🚀 ¿Qué es HepeinBaileys?
 
-<div class="grid">
+HepeinBaileys es una versión extendida del proyecto **Baileys** que agrega nuevas mejoras para crear bots de WhatsApp Web con:
 
-  <div class="card">
-    <span class="tag">🔐 Seguridad</span>
-    <div class="kf">
-      <div><b>Cifrado reforzado</b></div>
-      <p>Mejor manejo de claves, detección de riesgos, rotación opcional de seguridad y logs avanzados.</p>
-    </div>
-  </div>
+- Mayor estabilidad en sesiones  
+- Seguridad reforzada  
+- Multi-sesión real (en desarrollo)  
+- Integración con IA (en desarrollo)  
+- Sistema de plugins (próximamente)  
+- Base optimizada para Azure Databricks y Synapse  
 
-  <div class="card">
-    <span class="tag">🧠 Sesiones Avanzadas</span>
-    <div class="kf">
-      <div><b>Sesiones por grupo y multi-sesión</b></div>
-      <p>Reconexión automática, aislamiento de contexto y menor pérdida de estado.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <span class="tag">🤖 IA Integrada</span>
-    <div class="kf">
-      <div><b>Respuestas automáticas, NLP y ML</b></div>
-      <p>Compatibilidad con LLMs, análisis de mensajes y funciones inteligentes con 1 línea.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <span class="tag">🧩 Plugins</span>
-    <div class="kf">
-      <b>Extensión modular</b>
-      <p>Soporte para plugins tipo Express: anti-spam, moderación, voz a texto y más.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <span class="tag">📊 Dashboard</span>
-    <div class="kf">
-      <b>Panel web integrado</b>
-      <p>Ver QR, estado, reconexiones, estadísticas y errores en tiempo real.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <span class="tag">⚡ Core</span>
-    <div class="kf">
-      <b>Basado en JS Puro</b>
-      <p>Mínimo, limpio, sin dependencias innecesarias y fácil de extender.</p>
-    </div>
-  </div>
-
-</div>
+Es compatible con Node.js 18+ y está diseñado para bots más grandes y profesionales.
 
 ---
+
+# 🌟 Características Actuales
+
+✅ Mejor manejo de sesiones  
+✅ Reconexión más limpia  
+✅ Soporte para MultiFileAuthState  
+✅ Código base simplificado  
+✅ Corrección de eventos duplicados  
+✅ Compatible con bots simples y avanzados
+
+---
+
+# 🔮 Características Próximas (Roadmap)
+
+🚧 Funciones en desarrollo (ya en progreso):  
+- IA integrada (auto-respuestas, NLP, análisis, LLMs)  
+- Anti-spam y anti-flood interno  
+- Reconexión inteligente  
+- Plugins oficiales  
+- Dashboard web con estadísticas  
+- Multi-sesión 5–10 dispositivos reales  
+- Anti-ban experimental  
+- Mejoras para cifrado en grupos  
+
+---
+
+# 📦 Instalación
+
+```bash
+npm install hepeinbaileys
 
 # 📦 Instalación
 
