@@ -6,7 +6,7 @@
 <h1 align="center">🥃 HepeinBaileys</h1>
 
 <p align="center">
-  <em>Versión mejorada de Baileys para WhatsApp Web con enfoque en grupos, cifrado y sesiones.</em>
+  <em>Versión extendida y mejorada de Baileys para WhatsApp Web, con enfoque en estabilidad, seguridad, IA y sesiones avanzadas.</em>
 </p>
 
 <!-- Animated underline (SVG) -->
@@ -29,126 +29,80 @@
 <p align="center">
   <img alt="Node" src="https://img.shields.io/badge/Node.js-18%2B-43853D?logo=nodedotjs&logoColor=white" />
   <img alt="TypeScript/JS" src="https://img.shields.io/badge/JS_Puro-Sí-3178C6?logo=javascript&logoColor=white" />
+  <img alt="Status" src="https://img.shields.io/badge/Estado-En%20Mantenimiento-yellow" />
   <img alt="License" src="https://img.shields.io/badge/License-MIT-blue" />
-  <img alt="CI" src="https://img.shields.io/badge/CI-Passing-brightgreen" />
 </p>
 
-<!-- Subtle animated banner -->
 <div align="center">
   <img alt="banner" src="https://capsule-render.vercel.app/api?type=rect&color=0:111111,100:1f2937&height=10&section=header&animation=fadeIn"/>
 </div>
 
-<!-- Intro -->
-> HepeinBaileys es una versión modificada de **Baileys**, una librería para interactuar con **WhatsApp Web** mediante **Node.js**.  
-> Esta versión incluye mejoras específicas para el manejo de **grupos**, **cifrado** y **sesiones**.
+---
+
+# 🔧 Estado del Proyecto
+> **HepeinBaileys está actualmente en mantenimiento y desarrollo activo.**  
+> Se están agregando nuevas funciones, mejoras de reconexión, seguridad adicional, soporte multi-sesión real, IA integrada y un sistema avanzado de plugins.  
+> Puedes usarlo, pero algunas funciones pueden cambiar entre versiones.
 
 ---
 
-## 🚀 Características
+# 🚀 Características
 
 <div class="grid">
+
   <div class="card">
-    <div class="spark"></div>
     <span class="tag">🔐 Seguridad</span>
     <div class="kf">
-      <div>(つ▀¯▀)つ━━━━━━━━━</div>
-      <div>
-        <b>Cifrado personalizado para grupos</b>
-        <p>Refuerza el intercambio de claves y el manejo de mensajes protegidos en entornos multiusuario.</p>
-      </div>
+      <div><b>Cifrado reforzado</b></div>
+      <p>Mejor manejo de claves, detección de riesgos, rotación opcional de seguridad y logs avanzados.</p>
     </div>
-    <div class="shimmer"></div>
   </div>
 
   <div class="card">
-    <div class="spark"></div>
-    <span class="tag">🧠 Sesiones</span>
+    <span class="tag">🧠 Sesiones Avanzadas</span>
     <div class="kf">
-      <div>(つ▀¯▀)つ━━━━━━━━━</div>
-      <div>
-        <b>Construcción de sesiones grupales</b>
-        <p>Administra estados por grupo con recuperación automática y aislamiento de contexto.</p>
-      </div>
+      <div><b>Sesiones por grupo y multi-sesión</b></div>
+      <p>Reconexión automática, aislamiento de contexto y menor pérdida de estado.</p>
     </div>
-    <div class="shimmer"></div>
   </div>
 
   <div class="card">
-    <div class="spark"></div>
-    <span class="tag">📡 Protocolos</span>
+    <span class="tag">🤖 IA Integrada</span>
     <div class="kf">
-      <div>(つ▀¯▀)つ━━━━━━━━━</div>
-      <div>
-        <b>Protocolos de señal</b>
-        <p>Intercambio seguro y confiable para dispositivos enlazados y mensajería en tiempo real.</p>
-      </div>
+      <div><b>Respuestas automáticas, NLP y ML</b></div>
+      <p>Compatibilidad con LLMs, análisis de mensajes y funciones inteligentes con 1 línea.</p>
     </div>
-    <div class="shimmer"></div>
   </div>
 
   <div class="card">
-    <div class="spark"></div>
-    <span class="tag">🛠️ Deploy</span>
+    <span class="tag">🧩 Plugins</span>
     <div class="kf">
-      <div>(つ▀¯▀)つ━━━━━━━━━</div>
-      <div>
-        <b>Integración con Heroku (opcional)</b>
-        <p>Variables, buildpacks y sesiones listas para subir a producción en minutos.</p>
-      </div>
+      <b>Extensión modular</b>
+      <p>Soporte para plugins tipo Express: anti-spam, moderación, voz a texto y más.</p>
     </div>
-    <div class="shimmer"></div>
   </div>
 
   <div class="card">
-    <div class="spark"></div>
+    <span class="tag">📊 Dashboard</span>
+    <div class="kf">
+      <b>Panel web integrado</b>
+      <p>Ver QR, estado, reconexiones, estadísticas y errores en tiempo real.</p>
+    </div>
+  </div>
+
+  <div class="card">
     <span class="tag">⚡ Core</span>
     <div class="kf">
-      <div>(つ▀¯▀)つ━━━━━━━━━</div>
-      <div>
-        <b>Basado en JavaScript puro</b>
-        <p>Sin dependencias innecesarias. Limpio, mínimo y fácil de extender.</p>
-      </div>
+      <b>Basado en JS Puro</b>
+      <p>Mínimo, limpio, sin dependencias innecesarias y fácil de extender.</p>
     </div>
-    <div class="shimmer"></div>
   </div>
+
 </div>
 
 ---
 
-## 📦 Instalación rápida
+# 📦 Instalación
 
 ```bash
-# 1) Instala
 npm install hepeinbaileys
-
-# 2) Crea un archivo de arranque
-echo "import { makeWASocket } from 'hepeinbaileys';" > index.js
-
-# 3) Ejecuta
-node index.js
-
-```
-
-
-## ✨ Uso Basico
-
-```bash
-import { makeWASocket, useMultiFileAuthState } from 'hepeinbaileys'
-
-const start = async () => {
-  const { state, saveCreds } = await useMultiFileAuthState('./auth')
-  const sock = makeWASocket({ printQRInTerminal: true, auth: state })
-
-  sock.ev.on('creds.update', saveCreds)
-  sock.ev.on('messages.upsert', ({ messages }) => {
-    const m = messages[0]
-    if (!m?.message) return
-    if ((m.message.conversation || '').toLowerCase() === 'ping') {
-      sock.sendMessage(m.key.remoteJid, { text: 'pong 🏓' })
-    }
-  })
-}
-
-start().catch(console.error)
-
-```
