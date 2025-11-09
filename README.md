@@ -96,8 +96,4 @@ Es compatible con Node.js 18+ y está diseñado para bots más grandes y profesi
 
 ```bash
 npm install hepeinbaileys
-
-# 📦 Instalación
-
-```bash
-npm install hepeinbaileys
+```
