@@ -19,20 +19,14 @@
     "build:esm": "tsc -p tsconfig.esm.json",
     "build:types": "tsc -p tsconfig.types.json",
     "clean": "rimraf dist",
-    "dev": "tsx watch src/index.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:unit": "vitest run --dir tests/unit",
-    "test:integration": "vitest run --dir tests/integration",
     "lint": "eslint . --ext .ts,.js",
     "lint:fix": "eslint . --ext .ts,.js --fix",
-    "format": "prettier --write \"src/**/*.{ts,js,json}\"",
-    "format:check": "prettier --check \"src/**/*.{ts,js,json}\"",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build && npm run test",
-    "docs": "typedoc --out docs src/index.ts",
-    "benchmark": "node --require tsx/register benchmarks/index.ts"
+    "docs": "typedoc --out docs src/index.ts"
   },
   "keywords": [
     "whatsapp",
