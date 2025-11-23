@@ -1,1 +1,172 @@
+name: Build
 
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build:
+    name: Build on Node.js ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Clean previous builds
+        run: npm run clean
+
+      - name: Build CommonJS
+        run: npm run build:cjs
+
+      - name: Build ES Modules
+        run: npm run build:esm
+
+      - name: Build TypeScript types
+        run: npm run build:types
+
+      - name: Verify build outputs
+        run: |
+          echo "Checking CommonJS build..."
+          test -f dist/index.js || exit 1
+          echo "✅ CommonJS build exists"
+          
+          echo "Checking ES Modules build..."
+          test -f dist/index.mjs || exit 1
+          echo "✅ ES Modules build exists"
+          
+          echo "Checking TypeScript types..."
+          test -f dist/index.d.ts || exit 1
+          echo "✅ TypeScript types exist"
+
+      - name: Check package exports
+        run: |
+          node -e "const pkg = require('./package.json'); console.log('Main:', pkg.main); console.log('Module:', pkg.module); console.log('Types:', pkg.types);"
+
+      - name: Test CommonJS import
+        run: |
+          node -e "const hepein = require('./dist/index.js'); console.log('✅ CommonJS import works');"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        if: matrix.node-version == '20.x'
+        with:
+          name: dist-${{ matrix.node-version }}
+          path: dist/
+          retention-days: 7
+
+  build-docs:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate documentation
+        run: npm run docs
+
+      - name: Upload documentation
+        uses: actions/upload-artifact@v3
+        with:
+          name: documentation
+          path: docs/
+          retention-days: 30
+
+  size-check:
+    name: Check Bundle Size
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Check bundle sizes
+        run: |
+          echo "📦 Bundle Sizes:"
+          echo ""
+          echo "CommonJS:"
+          ls -lh dist/index.js | awk '{print $5, $9}'
+          echo ""
+          echo "ES Module:"
+          ls -lh dist/index.mjs | awk '{print $5, $9}'
+          echo ""
+          echo "TypeScript Types:"
+          ls -lh dist/index.d.ts | awk '{print $5, $9}'
+          echo ""
+          echo "Total dist size:"
+          du -sh dist/
+
+  validate-package:
+    name: Validate Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Pack package
+        run: npm pack
+
+      - name: List package contents
+        run: tar -tzf *.tgz
+
+      - name: Check package size
+        run: |
+          SIZE=$(ls -lh *.tgz | awk '{print $5}')
+          echo "📦 Package size: $SIZE"
+
+      - name: Upload package
+        uses: actions/upload-artifact@v3
+        with:
+          name: npm-package
+          path: "*.tgz"
+          retention-days: 7
