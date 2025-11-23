@@ -1,0 +1,30 @@
+name: Security Audit
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 0' # Cada domingo a medianoche
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v4
+
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+
+    - name: Audit de dependencias
+      run: npm audit --audit-level=moderate
+
+    - name: Verificar vulnerabilidades
+      run: npx audit-ci --moderate
+      continue-on-error: true
