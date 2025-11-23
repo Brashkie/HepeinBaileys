@@ -1,1 +1,43 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Documentation generated
+docs/
+
+# Logs
+logs/
+*.log
+
+# Environment
+.env
+.env.*
+
+# Auth data
+auth_info/
+auth_*/
+
+# Temporary
+tmp/
+temp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+
+# Ignore markdown files (optional)
+# *.md
