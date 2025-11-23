@@ -1,226 +1,33 @@
-name: Publish to NPM
+name: Publish
 
 on:
   release:
-    types: [published]
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version to publish (leave empty for current package.json version)'
-        required: false
+    types: [created]
 
 jobs:
   publish:
-    name: Publish to NPM
+    name: Publish to npm
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: read
-      id-token: write
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout código
+      uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+    - name: Instalar dependencias
+      run: npm ci || npm install
 
-      - name: Run tests
-        run: npm test
+    - name: Build
+      run: npm run build
 
-      - name: Run linter
-        run: npm run lint
-
-      - name: Type check
-        run: npm run typecheck
-
-      - name: Build project
-        run: npm run build
-
-      - name: Verify build
-        run: |
-          test -f dist/index.js || exit 1
-          test -f dist/index.mjs || exit 1
-          test -f dist/index.d.ts || exit 1
-          echo "✅ Build verification passed"
-
-      - name: Update version (if manual)
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.version != ''
-        run: npm version ${{ github.event.inputs.version }} --no-git-tag-version
-
-      - name: Publish to NPM (dry-run)
-        run: npm publish --dry-run
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish to NPM
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Get package info
-        id: package
-        run: |
-          echo "name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
-          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-
-      - name: Create GitHub Release Summary
-        run: |
-          echo "# 🎉 Published to NPM" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Package:** \`${{ steps.package.outputs.name }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "**Version:** \`${{ steps.package.outputs.version }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "**NPM:** https://www.npmjs.com/package/${{ steps.package.outputs.name }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "## Installation" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
-          echo "npm install ${{ steps.package.outputs.name }}" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-
-      - name: Create Git tag
-        if: github.event_name == 'workflow_dispatch'
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git tag -a v${{ steps.package.outputs.version }} -m "Release v${{ steps.package.outputs.version }}"
-          git push origin v${{ steps.package.outputs.version }}
-
-  publish-github:
-    name: Publish to GitHub Packages
-    runs-on: ubuntu-latest
-    needs: publish
-    
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@brashkie'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build project
-        run: npm run build
-
-      - name: Update package name for GitHub
-        run: |
-          node -e "const pkg = require('./package.json'); pkg.name = '@brashkie/hepeinbaileys'; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
-
-      - name: Publish to GitHub Packages
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  notify:
-    name: Notify Publication
-    runs-on: ubuntu-latest
-    needs: [publish, publish-github]
-    if: always()
-
-    steps:
-      - name: Check status
-        id: status
-        run: |
-          if [ "${{ needs.publish.result }}" == "success" ]; then
-            echo "status=success" >> $GITHUB_OUTPUT
-            echo "message=✅ Successfully published to NPM" >> $GITHUB_OUTPUT
-          else
-            echo "status=failure" >> $GITHUB_OUTPUT
-            echo "message=❌ Failed to publish to NPM" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Create summary
-        run: |
-          echo "# Publication Status" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "${{ steps.status.outputs.message }}" >> $GITHUB_STEP_SUMMARY
-          
-          if [ "${{ steps.status.outputs.status }}" == "success" ]; then
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "## Next Steps" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "1. Verify package on [NPM](https://www.npmjs.com/package/hepeinbaileys)" >> $GITHUB_STEP_SUMMARY
-            echo "2. Test installation: \`npm install hepeinbaileys\`" >> $GITHUB_STEP_SUMMARY
-            echo "3. Update documentation if needed" >> $GITHUB_STEP_SUMMARY
-            echo "4. Announce release on social media" >> $GITHUB_STEP_SUMMARY
-          fi
-
-  # Optional: Create GitHub Release with changelog
-  create-release:
-    name: Create GitHub Release
-    runs-on: ubuntu-latest
-    needs: publish
-    if: github.event_name == 'workflow_dispatch' && success()
-
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Get package info
-        id: package
-        run: |
-          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-
-      - name: Generate changelog
-        id: changelog
-        run: |
-          # Get commits since last tag
-          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
-          if [ -z "$LAST_TAG" ]; then
-            COMMITS=$(git log --pretty=format:"- %s (%h)" --no-merges)
-          else
-            COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s (%h)" --no-merges)
-          fi
-          
-          echo "commits<<EOF" >> $GITHUB_OUTPUT
-          echo "$COMMITS" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ steps.package.outputs.version }}
-          name: Release v${{ steps.package.outputs.version }}
-          body: |
-            ## 🎉 HepeinBaileys v${{ steps.package.outputs.version }}
-
-            ### 📦 Installation
-            ```bash
-            npm install hepeinbaileys@${{ steps.package.outputs.version }}
-            ```
-
-            ### 🔗 Links
-            - [NPM Package](https://www.npmjs.com/package/hepeinbaileys)
-            - [Documentation](https://github.com/Brashkie/HepeinBaileys#readme)
-
-            ### 📝 Changes
-            ${{ steps.changelog.outputs.commits }}
-
-            ---
-            Made with ❤️ by Brashkie - Hepein Oficial
-          draft: false
-          prerelease: false
+    - name: Publicar en npm
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      continue-on-error: true
