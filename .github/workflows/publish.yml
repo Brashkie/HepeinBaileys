@@ -199,12 +199,12 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Create Release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.package.outputs.version }}
-          release_name: Release v${{ steps.package.outputs.version }}
+          name: Release v${{ steps.package.outputs.version }}
           body: |
             ## 🎉 HepeinBaileys v${{ steps.package.outputs.version }}
 
