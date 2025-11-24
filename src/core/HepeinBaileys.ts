@@ -24,7 +24,7 @@ import { QueueManager } from '../queue/QueueManager';
 import { MetricsManager } from '../services/MetricsManager';
 import { MiddlewareStack } from '../middleware/MiddlewareStack';
 import { EventEmitter } from 'events';
-import { nanoid } from 'nanoid';
+//import { nanoid } from 'nanoid';
 
 /**
  * Configuración por defecto
@@ -183,7 +183,12 @@ export class HepeinBaileys extends EventEmitter {
         creds: state.creds,
         keys: makeCacheableSignalKeyStore(state.keys, this.logger),
       },
-      msgRetryCounterCache: await this.cache.getMessageRetryCache(),
+      msgRetryCounterCache: {
+        get: async (id: string) => this.cache.get(`retry:${id}`),
+        set: async (id: string, value: number) => this.cache.set(`retry:${id}`, value),
+        del: async (id: string) => this.cache.delete(`retry:${id}`),
+        flushAll: async () => {} // No-op for now
+      }
       generateHighQualityLinkPreview: true,
       getMessage: async (key) => {
         return await this.cache.getMessage(key);
