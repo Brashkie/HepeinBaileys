@@ -298,8 +298,8 @@ class OpenAIProvider implements AIProvider {
       }
 
       const data = await response.json();
-      const text = data.choices[0].message.content;
-      const tokensUsed = data.usage.total_tokens;
+      const text = (data as any).choices[0].message.content;
+      const tokensUsed = (data as any).usage.total_tokens;
 
       this.totalTokens += tokensUsed;
 
@@ -377,8 +377,8 @@ class AnthropicProvider implements AIProvider {
       }
 
       const data = await response.json();
-      const text = data.content[0].text;
-      const tokensUsed = data.usage.input_tokens + data.usage.output_tokens;
+      const text = (data as any).content[0].text;
+      const tokensUsed = (data as any).usage.input_tokens + data.usage.output_tokens;
 
       this.totalTokens += tokensUsed;
 
@@ -460,7 +460,7 @@ class GoogleProvider implements AIProvider {
       }
 
       const data = await response.json();
-      const text = data.candidates[0].content.parts[0].text;
+      const text = (data as any).candidates[0].content.parts[0].text;
 
       return {
         text,
@@ -494,19 +494,19 @@ class GoogleProvider implements AIProvider {
  */
 class CustomProvider implements AIProvider {
   private config: AIProviderConfig;
-  private logger: Logger;
+  // private logger: Logger;
 
-  constructor(config: any, logger: Logger) {
+  constructor(config: any, _logger: Logger) {
     this.config = {
       type: 'custom',
       apiKey: config.apiKey,
       model: config.model || 'custom',
       endpoint: config.endpoint,
     };
-    this.logger = logger;
+    // this.logger = logger;
   }
 
-  async generateResponse(prompt: string, options?: any): Promise<AIResponse> {
+  async generateResponse(_prompt: string, _options?: any): Promise<AIResponse> {
     throw new Error('Custom provider not implemented. Override this method.');
   }
 
