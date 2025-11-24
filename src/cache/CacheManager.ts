@@ -159,10 +159,11 @@ export class CacheManager implements ICacheManager {
    * Guardar múltiples mensajes
    */
   async saveMessages(messages: proto.IWebMessageInfo[]): Promise<void> {
-    const operations = messages.map((msg) => {
+    const operations = messages.map((msg): Promise<void> => {
       if (msg.key && msg.message) {
         return this.saveMessage(msg.key, msg.message);
       }
+      return Promise.resolve();
     });
 
     await Promise.all(operations.filter(Boolean));
