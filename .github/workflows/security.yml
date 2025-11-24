@@ -22,6 +22,28 @@ jobs:
       with:
         node-version: '20.x'
 
+    - name: Detectar gestor de paquetes
+      id: detect-pm
+      run: |
+        if [ -f "yarn.lock" ]; then
+          echo "pm=yarn" >> $GITHUB_OUTPUT
+        else
+          echo "pm=npm" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Instalar dependencias (npm)
+      if: steps.detect-pm.outputs.pm == 'npm'
+      run: npm install
+
+    - name: Instalar dependencias (yarn)
+      if: steps.detect-pm.outputs.pm == 'yarn'
+      run: yarn install
+
     - name: Audit de dependencias
-      run: npm audit --audit-level=moderate || echo "✅ Audit completado"
+      run: |
+        if [ "${{ steps.detect-pm.outputs.pm }}" = "yarn" ]; then
+          yarn audit || echo "✅ Audit completado"
+        else
+          npm audit --audit-level=moderate || echo "✅ Audit completado"
+        fi
       continue-on-error: true
