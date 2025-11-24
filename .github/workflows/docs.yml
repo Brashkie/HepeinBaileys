@@ -18,9 +18,28 @@ jobs:
       with:
         node-version: '20.x'
 
-    - name: Instalar dependencias
-      run: npm ci || npm install
+    - name: Detectar gestor de paquetes
+      id: detect-pm
+      run: |
+        if [ -f "yarn.lock" ]; then
+          echo "pm=yarn" >> $GITHUB_OUTPUT
+        else
+          echo "pm=npm" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Instalar dependencias (npm)
+      if: steps.detect-pm.outputs.pm == 'npm'
+      run: npm install
+
+    - name: Instalar dependencias (yarn)
+      if: steps.detect-pm.outputs.pm == 'yarn'
+      run: yarn install
 
     - name: Generar documentación
-      run: npm run docs || echo "✅ Documentación generada"
+      run: |
+        if [ "${{ steps.detect-pm.outputs.pm }}" = "yarn" ]; then
+          yarn docs || echo "✅ Documentación generada"
+        else
+          npm run docs || echo "✅ Documentación generada"
+        fi
       continue-on-error: true
