@@ -525,7 +525,7 @@ export class HepeinBaileys extends EventEmitter {
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        const messageInfo = await this.socket.sendMessage(jid, message);
+        const messageInfo = await this.socket.sendMessage(jid, message as any);
         this.metrics.increment('messages.sent');
         return messageInfo!;
       } catch (error) {
@@ -553,7 +553,7 @@ export class HepeinBaileys extends EventEmitter {
   private async isBusinessAccount(jid: string): Promise<boolean> {
     try {
       const info = await this.socket.onWhatsApp(jid);
-      return info[0]?.isBusiness || false;
+      return (info && info[0] && 'isBusiness' in info[0] ? (info[0] as any).isBusiness : false);
     } catch {
       return false;
     }
@@ -562,7 +562,7 @@ export class HepeinBaileys extends EventEmitter {
   /**
    * Obtener catálogo de negocio
    */
-  private async getCatalog(jid: string): Promise<BusinessCatalog> {
+  private async getCatalog(_jid: string): Promise<BusinessCatalog> {
     // Implementación pendiente - requiere API de Business
     throw new Error('Not implemented yet');
   }
@@ -627,7 +627,7 @@ export class HepeinBaileys extends EventEmitter {
     this.logger.info('Desconectando HepeinBaileys');
 
     try {
-      await this.socket?.end();
+      await this.socket?.end(undefined);
       await this.cache.cleanup();
       await this.queue.cleanup();
       this.metrics.cleanup();
