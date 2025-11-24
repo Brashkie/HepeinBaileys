@@ -1,5 +1,5 @@
 import type { WASocket, ConnectionState, proto, WAMessage } from '@whiskeysockets/baileys';
-import type { Boom } from '@hapi/boom';
+// import type { Boom } from '@hapi/boom';
 import type { Logger } from 'pino';
 
 /**
@@ -191,7 +191,7 @@ export interface HepeinSocket extends WASocket {
   isBusinessAccount: (jid: string) => Promise<boolean>;
   
   /** Obtener info del catálogo */
-  getCatalog: (jid: string) => Promise<BusinessCatalog>;
+  getCatalog?: (options: any) => Promise<any>;
   
   /** Enviar producto del catálogo */
   sendProduct: (jid: string, product: ProductMessage) => Promise<proto.WebMessageInfo>;
