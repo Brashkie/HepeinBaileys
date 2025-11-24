@@ -30,7 +30,7 @@ export class MiddlewareStack {
       }
 
       const middleware = this.middlewares[index++];
-      await middleware(context, next);
+      await middleware?.(context, next);
     };
 
     await next();
@@ -78,7 +78,7 @@ export class MiddlewareStack {
  * Middleware para logging de mensajes
  */
 export function loggingMiddleware(logger: any): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     logger.info(
       {
         from: context.from,
@@ -96,7 +96,7 @@ export function loggingMiddleware(logger: any): Middleware {
  * Middleware para filtrar mensajes del bot
  */
 export function filterSelfMessages(): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     if (context.metadata.fromMe) {
       return; // No procesar mensajes propios
     }
@@ -114,7 +114,7 @@ export function antiSpamMiddleware(config: {
 }): Middleware {
   const userMessageCounts = new Map<string, number[]>();
 
-  return async (context, next) => {
+  return async (_context, next) => {
     const now = Date.now();
     const oneMinuteAgo = now - 60000;
 
@@ -147,7 +147,7 @@ export function antiSpamMiddleware(config: {
  * Middleware para parsear comandos
  */
 export function commandParserMiddleware(prefix: string = '!'): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     if (!context.text) {
       await next();
       return;
@@ -171,7 +171,7 @@ export function commandParserMiddleware(prefix: string = '!'): Middleware {
  * Middleware para manejo de errores
  */
 export function errorHandlerMiddleware(logger: any): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     try {
       await next();
     } catch (error) {
@@ -191,7 +191,7 @@ export function errorHandlerMiddleware(logger: any): Middleware {
 export function rateLimitMiddleware(requestsPerSecond: number): Middleware {
   const userLastRequest = new Map<string, number>();
 
-  return async (context, next) => {
+  return async (_context, next) => {
     const now = Date.now();
     const lastRequest = userLastRequest.get(context.from) || 0;
     const minInterval = 1000 / requestsPerSecond;
@@ -211,7 +211,7 @@ export function rateLimitMiddleware(requestsPerSecond: number): Middleware {
  * Middleware para métricas
  */
 export function metricsMiddleware(metrics: any): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     const startTime = Date.now();
 
     try {
@@ -231,7 +231,7 @@ export function metricsMiddleware(metrics: any): Middleware {
  * Middleware para caché de respuestas
  */
 export function responseCacheMiddleware(cache: any, ttl: number = 300): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     if (!context.text) {
       await next();
       return;
@@ -269,7 +269,7 @@ export function responseCacheMiddleware(cache: any, ttl: number = 300): Middlewa
  * Middleware para validación de mensajes
  */
 export function messageValidationMiddleware(): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     // Validar que el mensaje no esté vacío
     if (context.type === 'text' && !context.text?.trim()) {
       return; // Ignorar mensajes vacíos
@@ -289,7 +289,7 @@ export function messageValidationMiddleware(): Middleware {
  * Middleware para enriquecimiento de contexto
  */
 export function contextEnrichmentMiddleware(cache: any): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     // Obtener info del usuario cacheada
     const userInfo = await cache.getContactInfo(context.from);
     if (userInfo) {
@@ -312,7 +312,7 @@ export function contextEnrichmentMiddleware(cache: any): Middleware {
  * Middleware para detección de idioma
  */
 export function languageDetectionMiddleware(): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     if (context.text) {
       // Simple detección basada en caracteres comunes
       const hasSpanish = /[áéíóúñ¿¡]/i.test(context.text);
@@ -332,7 +332,7 @@ export function conditionalMiddleware(
   condition: (context: MessageContext) => boolean,
   middleware: Middleware
 ): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     if (condition(context)) {
       await middleware(context, next);
     } else {
@@ -347,7 +347,7 @@ export function conditionalMiddleware(
 export function groupOnlyMiddleware(): Middleware {
   return conditionalMiddleware(
     (context) => context.metadata.isGroup,
-    async (context, next) => {
+    async (_context, next) => {
       await next();
     }
   );
@@ -359,7 +359,7 @@ export function groupOnlyMiddleware(): Middleware {
 export function privateOnlyMiddleware(): Middleware {
   return conditionalMiddleware(
     (context) => !context.metadata.isGroup,
-    async (context, next) => {
+    async (_context, next) => {
       await next();
     }
   );
@@ -369,7 +369,7 @@ export function privateOnlyMiddleware(): Middleware {
  * Middleware para auto-reaccionar
  */
 export function autoReactMiddleware(reactions: { [key: string]: string }): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     if (context.text) {
       const lowerText = context.text.toLowerCase();
 
@@ -389,7 +389,7 @@ export function autoReactMiddleware(reactions: { [key: string]: string }): Middl
  * Middleware para timeout de procesamiento
  */
 export function timeoutMiddleware(timeoutMs: number): Middleware {
-  return async (context, next) => {
+  return async (_context, next) => {
     const timeoutPromise = new Promise((_, reject) =>
       setTimeout(() => reject(new Error('Middleware timeout')), timeoutMs)
     );
