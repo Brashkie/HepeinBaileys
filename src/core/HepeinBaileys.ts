@@ -2,7 +2,7 @@ import makeWASocket, {
   DisconnectReason,
   fetchLatestBaileysVersion,
   makeCacheableSignalKeyStore,
-  makeInMemoryStore,
+  //makeInMemoryStore,
   proto,
   WASocket,
 } from '@whiskeysockets/baileys';
