@@ -2,7 +2,6 @@ import makeWASocket, {
   DisconnectReason,
   fetchLatestBaileysVersion,
   makeCacheableSignalKeyStore,
-  //makeInMemoryStore,
   proto,
   WASocket,
 } from '@whiskeysockets/baileys';
@@ -16,7 +15,6 @@ import type {
   ProductMessage,
   BusinessCatalog,
   MessageContext,
-  //Middleware,
   ExtendedConnectionState,
 } from '../types';
 import { CacheManager } from '../cache/CacheManager';
@@ -24,7 +22,6 @@ import { QueueManager } from '../queue/QueueManager';
 import { MetricsManager } from '../services/MetricsManager';
 import { MiddlewareStack } from '../middleware/MiddlewareStack';
 import { EventEmitter } from 'events';
-//import { nanoid } from 'nanoid';
 
 /**
  * Configuración por defecto
@@ -183,12 +180,7 @@ export class HepeinBaileys extends EventEmitter {
         creds: state.creds,
         keys: makeCacheableSignalKeyStore(state.keys, this.logger),
       },
-      msgRetryCounterCache: {
-        get: async (id: string) => this.cache.get(`retry:${id}`),
-        set: async (id: string, value: number) => this.cache.set(`retry:${id}`, value),
-        del: async (id: string) => this.cache.delete(`retry:${id}`),
-        flushAll: async () => {} // No-op for now
-      }
+      msgRetryCounterCache: await this.cache.getMessageRetryCache(),
       generateHighQualityLinkPreview: true,
       getMessage: async (key) => {
         return await this.cache.getMessage(key);
@@ -408,8 +400,9 @@ export class HepeinBaileys extends EventEmitter {
       msg.message?.conversation ||
       msg.message?.extendedTextMessage?.text ||
       msg.message?.imageMessage?.caption ||
-      msg.message?.videoMessage?.caption
-    )?? '';
+      msg.message?.videoMessage?.caption ||
+      undefined
+    );
   }
 
   /**
@@ -553,7 +546,7 @@ export class HepeinBaileys extends EventEmitter {
   private async isBusinessAccount(jid: string): Promise<boolean> {
     try {
       const info = await this.socket.onWhatsApp(jid);
-      return (info && info[0] && 'isBusiness' in info[0] ? (info[0] as any).isBusiness : false);
+      return info && info[0] && 'isBusiness' in info[0] ? !!(info[0] as any).isBusiness : false;
     } catch {
       return false;
     }
@@ -587,7 +580,6 @@ export class HepeinBaileys extends EventEmitter {
             product.product.price ? product.product.price.amount * 1000 : 0,
           url: product.product.url,
           productImageCount: 1,
-          businessOwnerJid: product.businessOwnerJid,
         },
         businessOwnerJid: product.businessOwnerJid,
         caption: product.caption,
