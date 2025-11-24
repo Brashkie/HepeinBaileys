@@ -409,7 +409,7 @@ export class HepeinBaileys extends EventEmitter {
       msg.message?.extendedTextMessage?.text ||
       msg.message?.imageMessage?.caption ||
       msg.message?.videoMessage?.caption
-    );
+    )?? '';
   }
 
   /**
