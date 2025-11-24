@@ -387,9 +387,10 @@ export class HepeinBaileys extends EventEmitter {
         participant: msg.participant ?? undefined,
       },
       state: {},
-      reply: async (message: string | proto.IMessage) => {
+      reply: async (message: string | proto.IMessage): Promise<proto.WebMessageInfo> => {
         const content = typeof message === 'string' ? { text: message } : message;
-        return await this.socket.sendMessage(from, content, { quoted: msg });
+        const result = await this.socket.sendMessage(from, content as any, { quoted: msg });
+        return result!;
       },
       react: async (emoji: string) => {
         await this.socket.sendMessage(from, {
