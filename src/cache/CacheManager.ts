@@ -32,7 +32,7 @@ export class CacheManager implements ICacheManager {
       updateAgeOnGet: true,
       updateAgeOnHas: true,
       allowStale: false,
-      dispose: (value, key) => {
+      dispose: (_value, key) => {
         this.logger.trace({ key }, 'Elemento eliminado del caché');
       },
     });
