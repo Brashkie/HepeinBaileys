@@ -94,12 +94,10 @@ export {
   useMultiFileAuthState,
   fetchLatestBaileysVersion,
   makeCacheableSignalKeyStore,
-  makeInMemoryStore,
   proto,
-  WASocket,
-  ConnectionState,
-  WAMessage,
 } from '@whiskeysockets/baileys';
+
+export type { WASocket, ConnectionState, WAMessage } from '@whiskeysockets/baileys';
 
 // Versión del paquete
 export const VERSION = '1.0.0';
@@ -107,7 +105,7 @@ export const VERSION = '1.0.0';
 /**
  * Configuración por defecto exportada
  */
-export const DEFAULT_CONFIG: Partial<HepeinBaileysConfig> = {
+export const DEFAULT_CONFIG: any = {
   connection: {
     printQRInTerminal: true,
     timeout: 60000,
@@ -318,4 +316,4 @@ export { nanoid } from 'nanoid';
 export { pino } from 'pino';
 
 // Default export
-export default createHepeinSocket;
+export default HepeinBaileys;
