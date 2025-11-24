@@ -16,7 +16,7 @@ import type {
   ProductMessage,
   BusinessCatalog,
   MessageContext,
-  Middleware,
+  //Middleware,
   ExtendedConnectionState,
 } from '../types';
 import { CacheManager } from '../cache/CacheManager';
