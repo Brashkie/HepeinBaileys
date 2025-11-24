@@ -214,7 +214,7 @@ export class HepeinBaileys extends EventEmitter {
    * Extender socket con funcionalidades
    */
   private extendSocket(socket: WASocket): HepeinSocket {
-    const extended = socket as HepeinSocket;
+    const extended = socket as unknown as HepeinSocket;
 
     extended.config = this.config;
     extended.cache = this.cache;
@@ -374,7 +374,7 @@ export class HepeinBaileys extends EventEmitter {
     const type = this.getMessageType(msg);
 
     return {
-      socket: this.socket as HepeinSocket,
+      socket: this.socket as unknown as HepeinSocket,
       message: msg,
       from,
       text,
