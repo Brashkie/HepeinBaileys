@@ -52,9 +52,9 @@ export class GroupHandler {
 
       const result = await this.socket.groupCreate(name, participants);
 
-      this.logger.info({ gid: result.gid }, '✅ Grupo creado');
+      this.logger.info({ gid: result.id }, '✅ Grupo creado');
       
-      return result;
+      return { gid: result.id, participants: result.participants };
     } catch (error) {
       this.logger.error({ error }, 'Error creando grupo');
       throw error;
@@ -189,7 +189,7 @@ export class GroupHandler {
   async getInviteCode(groupJid: string): Promise<string> {
     try {
       const code = await this.socket.groupInviteCode(groupJid);
-      return code;
+      return code ?? '';
     } catch (error) {
       this.logger.error({ error }, 'Error obteniendo código de invitación');
       throw error;
@@ -203,7 +203,7 @@ export class GroupHandler {
     try {
       const code = await this.socket.groupRevokeInvite(groupJid);
       this.logger.info({ groupJid }, 'Código de invitación revocado');
-      return code;
+      return code ?? '';
     } catch (error) {
       this.logger.error({ error }, 'Error revocando código');
       throw error;
@@ -217,7 +217,7 @@ export class GroupHandler {
     try {
       const groupJid = await this.socket.groupAcceptInvite(inviteCode);
       this.logger.info({ groupJid }, 'Invitación aceptada');
-      return groupJid;
+      return groupJid ?? '';
     } catch (error) {
       this.logger.error({ error }, 'Error aceptando invitación');
       throw error;
