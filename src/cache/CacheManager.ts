@@ -159,7 +159,7 @@ export class CacheManager implements ICacheManager {
    * Guardar múltiples mensajes
    */
   async saveMessages(messages: proto.IWebMessageInfo[]): Promise<void> {
-    const operations = messages.map((msg): Promise<void> => {
+    const operations = messages.map((msg): Promise<void> | undefined => {
       if (msg.key && msg.message) {
         return this.saveMessage(msg.key, msg.message);
       }
@@ -307,6 +307,32 @@ export class CacheManager implements ICacheManager {
   async getCompressed<T = any>(key: string): Promise<T | undefined> {
     // TODO: Implementar descompresión
     return await this.get<T>(key);
+  }
+
+  /**
+   * Guardar información de grupo
+   */
+  async saveGroupInfo(jid: string, info: any): Promise<void> {
+    await this.set(`group:${jid}`, info, 3600); // 1 hora
+  }
+
+  /**
+   * Obtener información de grupo
+   */
+  async getGroupInfo(jid: string): Promise<any> {
+    return await this.get(`group:${jid}`);
+  }
+
+  /**
+   * Obtener caché para reintentos de mensajes
+   */
+  async getMessageRetryCache() {
+    return {
+      get: async (id: string) => await this.get(`retry:${id}`),
+      set: async (id: string, value: number) => await this.set(`retry:${id}`, value),
+      del: async (id: string) => await this.delete(`retry:${id}`),
+      flushAll: async () => { /* No-op */ }
+    };
   }
 }
 
