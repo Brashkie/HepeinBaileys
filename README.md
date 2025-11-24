@@ -1,463 +1,1291 @@
-<!-- Hero -->
-<p align="center">
-  <img alt="HepeinBaileys" src="https://img.shields.io/badge/HepeinBaileys-%F0%9F%A5%83-111?style=for-the-badge" />
-</p>
-<h1 align="center">🥃 HepeinBaileys</h1>
-<p align="center">
-  <em>Fork mejorado de Baileys enfocado en estabilidad, seguridad, sesiones avanzadas e integración con IA.</em>
-</p>
-<p align="center">
-  <strong>✨ Compatible con WhatsApp Business | 📊 Optimizado para grandes volúmenes | 🔧 JavaScript & TypeScript</strong>
-</p>
+<div align="center">
 
-<!-- Animated underline -->
-<p align="center">
-  <svg width="420" height="16" viewBox="0 0 420 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="g" x1="0" y1="0" x2="420" y2="0">
-        <stop offset="0%" stop-color="#8A2BE2"/>
-        <stop offset="50%" stop-color="#00D1FF"/>
-        <stop offset="100%" stop-color="#39FF14"/>
-      </linearGradient>
-    </defs>
-    <rect x="0" y="7" width="420" height="2" rx="1" fill="url(#g)">
-      <animate attributeName="x" from="-420" to="0" dur="2s" repeatCount="1" fill="freeze"/>
-    </rect>
-  </svg>
-</p>
+# 🚀 HepeinBaileys
 
-<!-- Badges -->
-<p align="center">
-  <img alt="Node" src="https://img.shields.io/badge/Node.js-18%2B-43853D?logo=nodedotjs&logoColor=white" />
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-Ready-3178C6?logo=typescript&logoColor=white" />
-  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-Compatible-F7DF1E?logo=javascript&logoColor=black" />
-  <img alt="WhatsApp Business" src="https://img.shields.io/badge/WhatsApp_Business-Ready-25D366?logo=whatsapp&logoColor=white" />
-  <img alt="Dev Status" src="https://img.shields.io/badge/Estado-En%20Mantenimiento-yellow" />
-  <img alt="License" src="https://img.shields.io/badge/License-MIT-blue" />
-</p>
+### Fork Profesional de Baileys para WhatsApp Web & Business
+
+[![NPM Version](https://img.shields.io/npm/v/hepeinbaileys?style=flat-square)](https://www.npmjs.com/package/hepeinbaileys)
+[![License](https://img.shields.io/github/license/Brashkie/HepeinBaileys?style=flat-square)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/Brashkie/HepeinBaileys/ci.yml?style=flat-square)](https://github.com/Brashkie/HepeinBaileys/actions)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Node](https://img.shields.io/badge/Node.js-18%2B-green?style=flat-square&logo=node.js)](https://nodejs.org/)
+
+**HepeinBaileys** es una biblioteca TypeScript profesional para crear bots de WhatsApp con arquitectura empresarial, soporte para IA, sistema de plugins, gestión avanzada de grupos y mucho más.
+
+[🚀 Inicio Rápido](#-inicio-rápido) •
+[📚 Documentación](#-documentación) •
+[✨ Características](#-características) •
+[💡 Ejemplos](#-ejemplos) •
+[🤝 Contribuir](#-contribuir)
+
+</div>
 
 ---
 
-# 🔧 Estado del Proyecto
+## 📖 Tabla de Contenidos
 
-> **HepeinBaileys está actualmente en mantenimiento y desarrollo activo.**  
-> Todavía se están agregando funciones, optimizaciones, mejoras de estabilidad y módulos internos.  
-> Algunas versiones pueden cambiar rápido mientras se terminan las nuevas características principales:
-
-✅ Reconexión más estable  
-✅ Nuevos métodos para grupos  
-✅ Base para plugins oficiales  
-✅ Preparación para IA integrada  
-✅ Mejoras en cifrado  
-✅ Limpieza del core  
-✅ **Soporte completo para WhatsApp Business**  
-✅ **Optimización para grandes volúmenes de datos**  
-✅ **Compatibilidad total con JavaScript y TypeScript**
-
-Si quieres seguir el progreso, revisa los commits.
-
----
-
-# 🚀 ¿Qué es HepeinBaileys?
-
-HepeinBaileys es una versión extendida del proyecto **Baileys** que agrega nuevas mejoras para crear bots de WhatsApp Web con:
-
-- 🎯 Mayor estabilidad en sesiones  
-- 🛡️ Seguridad reforzada  
-- 📱 Multi-sesión real (en desarrollo)  
-- 🤖 Integración con IA (en desarrollo)  
-- 🔌 Sistema de plugins (próximamente)  
-- 🏢 **WhatsApp Business - Soporte completo**  
-- 📊 **Manejo optimizado de grandes volúmenes de datos**  
-- ⚡ Base optimizada para Azure Databricks y Synapse  
-- 💻 **Compatible con JavaScript y TypeScript sin configuración adicional**
-
-Es compatible con **Node.js 18+** y está diseñado para bots más grandes y profesionales que necesitan **escalabilidad** y **alto rendimiento**.
+- [🎯 ¿Por Qué HepeinBaileys?](#-por-qué-hepeinbaileys)
+- [✨ Características Principales](#-características-principales)
+- [🚀 Inicio Rápido](#-inicio-rápido)
+- [📦 Instalación](#-instalación)
+- [💡 Ejemplos de Uso](#-ejemplos-de-uso)
+  - [Bot Básico](#bot-básico)
+  - [Bot con IA](#bot-con-ia)
+  - [Bot de Grupos](#bot-de-grupos)
+  - [Bot con Plugins](#bot-con-plugins)
+  - [Envío Masivo](#envío-masivo)
+- [🎨 Características Avanzadas](#-características-avanzadas)
+  - [Sistema de Caché](#sistema-de-caché)
+  - [Cola de Mensajes](#cola-de-mensajes)
+  - [Métricas y Monitoreo](#métricas-y-monitoreo)
+  - [Middleware](#middleware)
+  - [AI Service](#ai-service)
+  - [Plugin System](#plugin-system)
+  - [Group Handler](#group-handler)
+- [🛠️ Configuración](#️-configuración)
+- [📊 Arquitectura](#-arquitectura)
+- [🧪 Testing](#-testing)
+- [🤝 Contribuir](#-contribuir)
+- [📄 Licencia](#-licencia)
+- [🙏 Créditos](#-créditos)
 
 ---
 
-# 🌟 Características Actuales
+## 🎯 ¿Por Qué HepeinBaileys?
 
-### Core & Estabilidad
-✅ Mejor manejo de sesiones  
-✅ Reconexión más limpia y automática  
-✅ Soporte para MultiFileAuthState  
-✅ Código base simplificado y optimizado  
-✅ Corrección de eventos duplicados  
-✅ Sistema de cola de mensajes con priorización  
+HepeinBaileys es más que un simple fork de Baileys. Es una **solución empresarial completa** para crear bots de WhatsApp profesionales:
 
-### Compatibilidad
-✅ **Funciona en JavaScript puro (CommonJS y ES Modules)**  
-✅ **Funciona en TypeScript con tipos incluidos**  
-✅ Compatible con bots simples y avanzados  
-✅ Sin necesidad de transpilación o configuración adicional  
-✅ IntelliSense completo en IDEs modernos  
-
-### WhatsApp Business
-✅ **Soporte completo para cuentas Business**  
-✅ **Catálogos de productos**  
-✅ **Mensajes con plantillas de negocio**  
-✅ **Botones interactivos y listas**  
-✅ **Etiquetas empresariales**  
-✅ **Respuestas rápidas**  
-
-### Grandes Volúmenes de Datos
-✅ **Procesamiento de miles de mensajes sin degradación**  
-✅ **Gestión eficiente de memoria**  
-✅ **Sistema de caché inteligente (LRU)**  
-✅ **Envío masivo optimizado con batching**  
-✅ **Compresión automática de multimedia**  
-✅ **Compatible con pipelines de Big Data**  
-✅ **Logging estructurado para análisis**  
+| Característica | Baileys Original | HepeinBaileys |
+|----------------|------------------|---------------|
+| **Reconexión Automática** | Básica | ✅ Inteligente con backoff exponencial |
+| **Sistema de Caché** | ❌ No | ✅ Redis, Memory, File con TTL |
+| **Cola de Mensajes** | ❌ No | ✅ Prioridades, reintentos, delays |
+| **Métricas** | ❌ No | ✅ Prometheus, performance, custom |
+| **IA Integrada** | ❌ No | ✅ OpenAI, Anthropic, Google Gemini |
+| **Sistema de Plugins** | ❌ No | ✅ Carga dinámica, hot-reload |
+| **Gestión de Grupos** | Básica | ✅ 20+ métodos profesionales |
+| **Middleware** | ❌ No | ✅ Stack completo customizable |
+| **TypeScript** | Parcial | ✅ 100% tipado con generics |
+| **Testing** | Básico | ✅ 65+ tests, coverage 70%+ |
+| **CI/CD** | ❌ No | ✅ GitHub Actions completo |
+| **Documentación** | Básica | ✅ Exhaustiva con ejemplos |
 
 ---
 
-# 🔮 Características Próximas (Roadmap)
+## ✨ Características Principales
 
-🚧 **Funciones en desarrollo activo:**  
-- 🤖 IA integrada (auto-respuestas, NLP, análisis, LLMs)  
-- 🛡️ Anti-spam y anti-flood interno  
-- 🔄 Reconexión inteligente con machine learning  
-- 🔌 Plugins oficiales y marketplace  
-- 📊 Dashboard web con estadísticas en tiempo real  
-- 📱 Multi-sesión 5–10 dispositivos reales  
-- 🔐 Anti-ban experimental  
-- 🔒 Mejoras para cifrado en grupos  
-- 📈 Métricas avanzadas de rendimiento  
-- 🌐 API REST opcional para control remoto  
+### 🤖 **AI Service - Inteligencia Artificial Integrada**
+
+```typescript
+// Auto-respuestas inteligentes con IA
+const bot = new HepeinBaileys({
+  ai: {
+    enabled: true,
+    provider: 'openai',
+    apiKey: process.env.OPENAI_API_KEY,
+    autoReply: {
+      enabled: true,
+      patterns: [/¿.*\?/, /ayuda/i],
+    }
+  }
+});
+```
+
+**Proveedores soportados:**
+- ✅ OpenAI (GPT-4, GPT-3.5)
+- ✅ Anthropic (Claude 3.5 Sonnet, Claude 3 Opus)
+- ✅ Google (Gemini Pro, Gemini Ultra)
+- ✅ Custom (Tu propia API)
+
+**Funcionalidades:**
+- 🧠 Generación de respuestas contextuales
+- 💬 Auto-respuestas inteligentes
+- 😊 Análisis de sentimientos
+- 🎯 Extracción de intenciones (NLU)
+- 🌍 Traducción automática
+- 📝 Resumen de textos
+- 🔮 Clasificación de mensajes
+
+### 🔌 **Plugin System - Arquitectura Extensible**
+
+```typescript
+// Cargar plugins dinámicamente
+await bot.plugins.loadPlugin('utils');
+await bot.plugins.loadPlugin('music');
+await bot.plugins.loadPlugin('games');
+
+// Hot-reload sin reiniciar
+await bot.plugins.reloadPlugin('utils');
+```
+
+**Comandos incluidos:**
+- `!ping` - Verificar latencia
+- `!info` - Información del chat
+- `!help` - Ayuda de comandos
+- `!calc` - Calculadora
+- `!translate` - Traducción con IA
+- `!sentiment` - Análisis de sentimientos
+
+**Crear tu propio plugin:**
+
+```typescript
+import { BasePlugin } from 'hepeinbaileys';
+
+export default class MyPlugin extends BasePlugin {
+  constructor() {
+    super({
+      name: 'mi-plugin',
+      version: '1.0.0',
+      description: 'Mi plugin personalizado'
+    });
+
+    this.addCommand({
+      name: 'saludo',
+      pattern: /^!saludo/,
+      handler: async (ctx) => {
+        await ctx.reply('¡Hola! 👋');
+      }
+    });
+  }
+}
+```
+
+### 👥 **Group Handler - Gestión Profesional de Grupos**
+
+```typescript
+const groupHandler = bot.groupHandler;
+
+// Crear grupo
+const group = await groupHandler.createGroup(
+  'Mi Grupo',
+  ['51987654321@s.whatsapp.net']
+);
+
+// Gestión de miembros
+await groupHandler.addParticipants(groupId, [jid1, jid2]);
+await groupHandler.promoteToAdmin(groupId, [jid1]);
+await groupHandler.banUser(groupId, jid2, 'Spam');
+
+// Mencionar a todos
+await groupHandler.mentionEveryone(groupId, '¡Atención todos! 📢');
+
+// Estadísticas
+const stats = await groupHandler.getGroupStats(groupId);
+console.log(stats); 
+// { totalParticipants: 50, totalAdmins: 3, botIsAdmin: true }
+```
+
+**20+ métodos disponibles:**
+- Crear/modificar grupos
+- Gestión de participantes
+- Promoción/degradación de admins
+- Links de invitación
+- Configuración avanzada
+- Moderación automática
+- Blacklist de usuarios
+
+### 💾 **Sistema de Caché - Alto Rendimiento**
+
+```typescript
+const bot = new HepeinBaileys({
+  cache: {
+    enabled: true,
+    type: 'redis', // 'memory', 'redis', 'file'
+    maxSize: 10000,
+    ttl: 3600,
+    redis: {
+      host: 'localhost',
+      port: 6379
+    }
+  }
+});
+
+// Uso automático
+const message = await bot.cache.getMessage(messageKey);
+const contact = await bot.cache.getContactInfo(jid);
+const group = await bot.cache.getGroupInfo(groupId);
+
+// Stats
+const stats = await bot.cache.getStats();
+// { hits: 850, misses: 150, hitRate: 85, size: 1000 }
+```
+
+**Características:**
+- ✅ Múltiples backends (Memory, Redis, File)
+- ✅ TTL (Time To Live) configurable
+- ✅ LRU eviction automática
+- ✅ Estadísticas en tiempo real
+- ✅ Patrón getOrSet
+- ✅ Cleanup automático
+
+### 📬 **Cola de Mensajes - Envío Confiable**
+
+```typescript
+const bot = new HepeinBaileys({
+  queue: {
+    enabled: true,
+    processing: {
+      concurrency: 5,
+      rateLimit: 10, // 10 por segundo
+      batchSize: 100,
+      batchDelay: 1000
+    }
+  }
+});
+
+// Agregar a la cola
+await bot.queue.add({
+  type: 'send',
+  data: {
+    to: jid,
+    message: { text: 'Hola!' }
+  },
+  priority: 5,
+  delay: 2000,
+  attempts: 3
+});
+
+// Envío masivo
+await bot.queue.addBulk(
+  contacts.map(contact => ({
+    type: 'send',
+    data: { to: contact, message: { text: 'Newsletter' } }
+  }))
+);
+
+// Stats
+const stats = await bot.queue.getStats();
+// { waiting: 50, active: 5, completed: 1000, failed: 10 }
+```
+
+**Características:**
+- ✅ Prioridades (1-10)
+- ✅ Reintentos automáticos con backoff
+- ✅ Rate limiting inteligente
+- ✅ Procesamiento por lotes
+- ✅ Delays programados
+- ✅ Pause/Resume
+- ✅ Eventos en tiempo real
+
+### 📊 **Métricas y Monitoreo**
+
+```typescript
+const bot = new HepeinBaileys({
+  metrics: {
+    enabled: true,
+    detailed: true
+  }
+});
+
+// Métricas automáticas
+bot.metrics.increment('messages.received');
+bot.metrics.gauge('connections.active', 1);
+bot.metrics.histogram('message.latency', 150);
+
+// Timing de operaciones
+const result = await bot.metrics.measureTime(
+  'database.query',
+  () => database.query('SELECT * FROM users')
+);
+
+// Export Prometheus
+const metrics = bot.metrics.exportPrometheus();
+
+// Dashboard
+const summary = bot.metrics.getSummary();
+/*
+{
+  system: { uptime: 86400, memory: { used: 150MB, total: 512MB } },
+  messages: { received: 10000, sent: 8500, errors: 15, successRate: 99.8 },
+  cache: { hits: 8500, misses: 1500, hitRate: 85 },
+  queue: { waiting: 10, active: 5, completed: 9985 }
+}
+*/
+```
+
+### 🎛️ **Middleware Stack**
+
+```typescript
+// Logging middleware
+bot.middleware.use(async (ctx, next) => {
+  console.log(`[${ctx.from}] ${ctx.text}`);
+  await next();
+});
+
+// Authentication
+bot.middleware.use(async (ctx, next) => {
+  if (await isAuthorized(ctx.from)) {
+    await next();
+  } else {
+    await ctx.reply('No autorizado');
+  }
+});
+
+// Rate limiting
+bot.middleware.use(async (ctx, next) => {
+  if (await checkRateLimit(ctx.from)) {
+    await next();
+  } else {
+    await ctx.reply('Demasiados mensajes, espera un momento');
+  }
+});
+
+// Error handling
+bot.middleware.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (error) {
+    console.error('Error:', error);
+    await ctx.reply('Ocurrió un error');
+  }
+});
+```
+
+### 🔐 **Seguridad y Validación**
+
+```typescript
+import { Validator, Formatter, MessageValidator } from 'hepeinbaileys';
+
+// Validar números
+Validator.isValidNumber('51987654321'); // true
+Validator.isValidJID('51987654321@s.whatsapp.net'); // true
+
+// Formatear
+Formatter.toJID('51987654321'); // '51987654321@s.whatsapp.net'
+Formatter.formatNumber('51987654321'); // '+51 987 654 321'
+
+// Validar mensajes
+MessageValidator.isSpam(message); // Detecta spam
+MessageValidator.hasInappropriateContent(message, blacklist);
+
+// Extraer información
+MessageValidator.extractURLs(text);
+MessageValidator.extractMentions(text);
+MessageValidator.extractPhoneNumbers(text);
+```
 
 ---
 
-# 📦 Instalación
+## 🚀 Inicio Rápido
+
+### Prerrequisitos
+
+- Node.js 18.x o superior
+- npm, yarn o pnpm
+- TypeScript 5.x (opcional)
+
+### Instalación Rápida
+
+```bash
+# Instalar
+npm install hepeinbaileys
+
+# Crear bot básico
+npx hepeinbaileys init my-bot
+
+# Ejecutar
+cd my-bot
+npm start
+```
+
+---
+
+## 📦 Instalación
+
+### NPM
 
 ```bash
 npm install hepeinbaileys
 ```
 
-**O usando otros package managers:**
+### Yarn
 
 ```bash
-# Yarn
 yarn add hepeinbaileys
+```
 
-# PNPM
+### PNPM
+
+```bash
 pnpm add hepeinbaileys
 ```
 
+### Desde GitHub
+
+```bash
+npm install github:Brashkie/HepeinBaileys
+```
+
 ---
 
-# 💻 Uso Rápido
+## 💡 Ejemplos de Uso
 
-## JavaScript (CommonJS)
-
-```javascript
-const { makeWASocket, DisconnectReason, useMultiFileAuthState } = require('hepeinbaileys');
-
-async function conectarBot() {
-    const { state, saveCreds } = await useMultiFileAuthState('auth_info');
-    
-    const sock = makeWASocket({
-        auth: state,
-        printQRInTerminal: true
-    });
-    
-    sock.ev.on('creds.update', saveCreds);
-    
-    sock.ev.on('connection.update', (update) => {
-        const { connection, lastDisconnect } = update;
-        if (connection === 'close') {
-            const shouldReconnect = lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut;
-            if (shouldReconnect) conectarBot();
-        } else if (connection === 'open') {
-            console.log('✅ Bot conectado');
-        }
-    });
-    
-    sock.ev.on('messages.upsert', async ({ messages }) => {
-        const msg = messages[0];
-        if (!msg.message) return;
-        
-        await sock.sendMessage(msg.key.remoteJid, { 
-            text: '¡Hola desde HepeinBaileys!' 
-        });
-    });
-}
-
-conectarBot();
-```
-
-## JavaScript (ES Modules)
-
-```javascript
-import makeWASocket, { DisconnectReason, useMultiFileAuthState } from 'hepeinbaileys';
-
-async function iniciarBot() {
-    const { state, saveCreds } = await useMultiFileAuthState('auth_info');
-    
-    const sock = makeWASocket({
-        auth: state,
-        printQRInTerminal: true
-    });
-    
-    // ... resto del código igual
-}
-
-iniciarBot();
-```
-
-## TypeScript
+### Bot Básico
 
 ```typescript
-import makeWASocket, { 
-    DisconnectReason, 
-    useMultiFileAuthState,
-    WASocket,
-    ConnectionState
-} from 'hepeinbaileys';
+import { HepeinBaileys } from 'hepeinbaileys';
 
-async function iniciarBot(): Promise<void> {
-    const { state, saveCreds } = await useMultiFileAuthState('auth_info');
-    
-    const sock: WASocket = makeWASocket({
-        auth: state,
-        printQRInTerminal: true
-    });
-    
-    sock.ev.on('connection.update', (update: Partial<ConnectionState>) => {
-        const { connection, lastDisconnect } = update;
-        // TypeScript con autocompletado completo
-    });
-}
+const bot = new HepeinBaileys({
+  auth: {
+    type: 'multi-file',
+    folder: './auth_info'
+  },
+  logger: {
+    level: 'info'
+  }
+});
 
-iniciarBot();
+// Iniciar bot
+await bot.initialize();
+
+// Escuchar mensajes
+bot.on('message', async (message) => {
+  const { from, text, reply } = message;
+  
+  console.log(`[${from}] ${text}`);
+  
+  if (text === '!ping') {
+    await reply('🏓 Pong!');
+  }
+});
+
+// Conectar
+await bot.connect();
 ```
 
----
+### Bot con IA
 
-# 💼 WhatsApp Business - Ejemplos
+```typescript
+import { HepeinBaileys } from 'hepeinbaileys';
 
-## Enviar producto del catálogo
-
-```javascript
-await sock.sendMessage(numeroCliente, {
-    product: {
-        productImage: { url: 'https://ejemplo.com/producto.jpg' },
-        title: 'Producto Premium',
-        description: 'Descripción detallada del producto',
-        currencyCode: 'PEN',
-        priceAmount1000: 99000, // 99.00 soles
-        url: 'https://tutienda.com/producto',
-        businessOwnerJid: sock.user.id
+const bot = new HepeinBaileys({
+  ai: {
+    enabled: true,
+    provider: 'openai',
+    apiKey: process.env.OPENAI_API_KEY,
+    model: 'gpt-4',
+    autoReply: {
+      enabled: true,
+      patterns: [/¿.*\?/, /ayuda/i, /consulta/i],
+      context: 'Eres un asistente virtual amigable y profesional.'
     }
+  }
 });
+
+await bot.initialize();
+
+// Comandos con IA
+bot.on('message', async ({ text, reply }) => {
+  // Auto-responde automáticamente con IA si match patterns
+  
+  // Comando manual
+  if (text.startsWith('!ai ')) {
+    const question = text.slice(4);
+    const response = await bot.ai.generateResponse(question);
+    await reply(response);
+  }
+  
+  // Traducir
+  if (text.startsWith('!translate ')) {
+    const [lang, ...words] = text.slice(11).split(' ');
+    const translated = await bot.ai.translate(
+      words.join(' '),
+      lang
+    );
+    await reply(translated);
+  }
+  
+  // Análisis de sentimientos
+  if (text.startsWith('!sentiment ')) {
+    const toAnalyze = text.slice(11);
+    const result = await bot.ai.analyzeSentiment(toAnalyze);
+    await reply(
+      `Sentimiento: ${result.sentiment} (${result.confidence}%)`
+    );
+  }
+});
+
+await bot.connect();
 ```
 
-## Botones interactivos
+### Bot de Grupos
 
-```javascript
-await sock.sendMessage(numeroCliente, {
-    text: '¿Cómo puedo ayudarte?',
-    footer: 'Selecciona una opción',
-    buttons: [
-        { buttonId: 'opt1', buttonText: { displayText: 'Consulta' } },
-        { buttonId: 'opt2', buttonText: { displayText: 'Soporte' } },
-        { buttonId: 'opt3', buttonText: { displayText: 'Ventas' } }
-    ],
-    headerType: 1
+```typescript
+import { HepeinBaileys } from 'hepeinbaileys';
+
+const bot = new HepeinBaileys({
+  /* config */
 });
-```
 
-## Lista de opciones
+await bot.initialize();
 
-```javascript
-await sock.sendMessage(numeroCliente, {
-    text: 'Nuestros servicios',
-    footer: 'Selecciona el servicio que te interesa',
-    title: 'Catálogo de Servicios',
-    buttonText: 'Ver opciones',
-    sections: [
-        {
-            title: 'Servicios Premium',
-            rows: [
-                { title: 'Servicio A', description: 'Descripción A', rowId: 'serv_a' },
-                { title: 'Servicio B', description: 'Descripción B', rowId: 'serv_b' }
-            ]
-        }
-    ]
-});
-```
-
----
-
-# 📊 Grandes Volúmenes - Ejemplo de Envío Masivo
-
-```javascript
-const { makeWASocket } = require('hepeinbaileys');
-
-async function envioMasivoOptimizado(destinatarios, mensaje) {
-    const sock = makeWASocket({ /* config */ });
-    
-    // Configuración para grandes volúmenes
-    const BATCH_SIZE = 50; // Enviar de 50 en 50
-    const DELAY_BETWEEN_BATCHES = 5000; // 5 segundos entre lotes
-    const RETRY_ATTEMPTS = 3; // Reintentos por mensaje
-    
-    let exitosos = 0;
-    let fallidos = 0;
-    
-    for (let i = 0; i < destinatarios.length; i += BATCH_SIZE) {
-        const lote = destinatarios.slice(i, i + BATCH_SIZE);
-        
-        console.log(`📤 Procesando lote ${Math.floor(i/BATCH_SIZE) + 1}/${Math.ceil(destinatarios.length/BATCH_SIZE)}`);
-        
-        // Procesar lote en paralelo con reintentos
-        const resultados = await Promise.allSettled(
-            lote.map(async (numero) => {
-                let intentos = 0;
-                while (intentos < RETRY_ATTEMPTS) {
-                    try {
-                        await sock.sendMessage(`${numero}@s.whatsapp.net`, {
-                            text: mensaje
-                        });
-                        return { exito: true, numero };
-                    } catch (error) {
-                        intentos++;
-                        if (intentos === RETRY_ATTEMPTS) {
-                            throw error;
-                        }
-                        await new Promise(r => setTimeout(r, 1000 * intentos));
-                    }
-                }
-            })
-        );
-        
-        // Contar resultados
-        resultados.forEach(r => {
-            if (r.status === 'fulfilled') exitosos++;
-            else fallidos++;
-        });
-        
-        // Esperar antes del siguiente lote
-        if (i + BATCH_SIZE < destinatarios.length) {
-            await new Promise(resolve => setTimeout(resolve, DELAY_BETWEEN_BATCHES));
-        }
+bot.on('message', async ({ text, from, isGroup, groupId, reply }) => {
+  if (!isGroup) return;
+  
+  const group = bot.groupHandler;
+  
+  // Crear grupo
+  if (text === '!creategroup') {
+    const newGroup = await group.createGroup(
+      'Mi Nuevo Grupo',
+      [from] // Agregar al remitente
+    );
+    await reply(`Grupo creado: ${newGroup.gid}`);
+  }
+  
+  // Info del grupo
+  if (text === '!groupinfo') {
+    const stats = await group.getGroupStats(groupId);
+    await reply(
+      `📊 Estadísticas:\n` +
+      `👥 Participantes: ${stats.totalParticipants}\n` +
+      `👑 Admins: ${stats.totalAdmins}\n` +
+      `🤖 Bot es admin: ${stats.botIsAdmin ? 'Sí' : 'No'}`
+    );
+  }
+  
+  // Mencionar a todos (solo admins)
+  if (text.startsWith('!everyone ')) {
+    const isAdmin = await group.isAdmin(groupId, from);
+    if (!isAdmin) {
+      await reply('❌ Solo admins pueden usar este comando');
+      return;
     }
     
-    console.log(`✅ Envío completado: ${exitosos} exitosos, ${fallidos} fallidos`);
-    return { exitosos, fallidos };
-}
+    const message = text.slice(10);
+    await group.mentionEveryone(groupId, message);
+  }
+  
+  // Banear usuario (solo admins)
+  if (text.startsWith('!ban @')) {
+    const isAdmin = await group.isAdmin(groupId, from);
+    if (!isAdmin) {
+      await reply('❌ Solo admins');
+      return;
+    }
+    
+    const mentions = message.mentions;
+    if (mentions.length > 0) {
+      await group.banUser(groupId, mentions[0], 'Baneado por admin');
+      await reply('✅ Usuario baneado');
+    }
+  }
+  
+  // Cambiar nombre
+  if (text.startsWith('!setname ')) {
+    const newName = text.slice(9);
+    await group.updateGroupName(groupId, newName);
+    await reply(`✅ Nombre cambiado a: ${newName}`);
+  }
+  
+  // Link de invitación
+  if (text === '!link') {
+    const link = await group.getInviteLink(groupId);
+    await reply(`🔗 Link: ${link}`);
+  }
+});
 
-// Uso con miles de números
-const numeros = [/* ... array con miles de números ... */];
-envioMasivoOptimizado(numeros, 'Mensaje masivo con HepeinBaileys');
+await bot.connect();
+```
+
+### Bot con Plugins
+
+```typescript
+import { HepeinBaileys } from 'hepeinbaileys';
+
+const bot = new HepeinBaileys({
+  /* config */
+});
+
+await bot.initialize();
+
+// Cargar plugins
+await bot.plugins.loadPlugin('utils');
+await bot.plugins.loadPlugin('music');
+await bot.plugins.loadPlugin('games');
+
+// Ver plugins cargados
+console.log(bot.plugins.getStats());
+// { loaded: 3, plugins: ['utils', 'music', 'games'] }
+
+bot.on('message', async ({ text, reply }) => {
+  // Los comandos de plugins se ejecutan automáticamente
+  // !ping, !info, !calc, etc.
+  
+  // Ejecutar comando manualmente
+  if (text.startsWith('!')) {
+    const executed = await bot.plugins.executeCommand(text, {
+      socket: bot.socket,
+      message,
+      reply
+    });
+    
+    if (!executed) {
+      await reply('❌ Comando no encontrado');
+    }
+  }
+  
+  // Listar comandos disponibles
+  if (text === '!plugins') {
+    const stats = bot.plugins.getStats();
+    await reply(
+      `🔌 Plugins cargados: ${stats.loaded}\n` +
+      `📝 Comandos: ${stats.commands}\n` +
+      `📋 Lista: ${stats.plugins.join(', ')}`
+    );
+  }
+  
+  // Recargar plugin (hot-reload)
+  if (text.startsWith('!reload ')) {
+    const pluginName = text.slice(8);
+    await bot.plugins.reloadPlugin(pluginName);
+    await reply(`✅ Plugin ${pluginName} recargado`);
+  }
+});
+
+await bot.connect();
+
+// Crear tu propio plugin
+// plugins/mi-plugin.ts
+import { BasePlugin, createCommand } from 'hepeinbaileys';
+
+export default class MiPlugin extends BasePlugin {
+  constructor() {
+    super({
+      name: 'mi-plugin',
+      version: '1.0.0',
+      description: 'Mi plugin personalizado',
+      author: 'Tu Nombre'
+    });
+    
+    // Comando simple
+    this.addCommand(createCommand({
+      name: 'hola',
+      aliases: ['hi', 'hello'],
+      description: 'Saluda al usuario',
+      pattern: /^!(hola|hi|hello)$/i,
+      handler: async (ctx) => {
+        await ctx.reply(`¡Hola ${ctx.from}! 👋`);
+      }
+    }));
+    
+    // Comando con argumentos
+    this.addCommand(createCommand({
+      name: 'suma',
+      pattern: /^!suma (\d+) (\d+)$/,
+      handler: async (ctx) => {
+        const [, a, b] = ctx.text.match(/^!suma (\d+) (\d+)$/);
+        const result = parseInt(a) + parseInt(b);
+        await ctx.reply(`${a} + ${b} = ${result}`);
+      }
+    }));
+  }
+  
+  async initialize(socket: any) {
+    console.log('Mi plugin inicializado');
+  }
+  
+  async cleanup() {
+    console.log('Mi plugin limpiado');
+  }
+}
+```
+
+### Envío Masivo
+
+```typescript
+import { HepeinBaileys } from 'hepeinbaileys';
+
+const bot = new HepeinBaileys({
+  queue: {
+    enabled: true,
+    processing: {
+      concurrency: 5,
+      rateLimit: 10,
+      batchSize: 100
+    }
+  }
+});
+
+await bot.initialize();
+await bot.connect();
+
+// Lista de contactos
+const contacts = [
+  '51987654321@s.whatsapp.net',
+  '51987654322@s.whatsapp.net',
+  // ... más contactos
+];
+
+// Mensaje a enviar
+const message = {
+  text: '¡Hola! Este es un mensaje masivo 📢'
+};
+
+// Agregar todos a la cola
+await bot.queue.addBulk(
+  contacts.map(contact => ({
+    type: 'send',
+    data: {
+      to: contact,
+      message
+    },
+    priority: 5,
+    attempts: 3
+  }))
+);
+
+console.log('✅ Mensajes agregados a la cola');
+
+// Monitorear progreso
+setInterval(async () => {
+  const stats = await bot.queue.getStats();
+  console.log(`
+    📊 Progreso:
+    ⏳ En espera: ${stats.waiting}
+    🔄 Procesando: ${stats.active}
+    ✅ Completados: ${stats.completed}
+    ❌ Fallidos: ${stats.failed}
+    📈 Tasa de éxito: ${stats.successRate.toFixed(2)}%
+  `);
+}, 5000);
+
+// Eventos de la cola
+bot.queue.on('completed', (job) => {
+  console.log(`✅ Mensaje enviado a ${job.data.to}`);
+});
+
+bot.queue.on('failed', (job, error) => {
+  console.error(`❌ Falló envío a ${job.data.to}:`, error);
+});
+```
+
+### Bot Completo con Todas las Features
+
+```typescript
+import { HepeinBaileys } from 'hepeinbaileys';
+
+const bot = new HepeinBaileys({
+  // Autenticación
+  auth: {
+    type: 'multi-file',
+    folder: './auth_info'
+  },
+  
+  // Logger
+  logger: {
+    level: 'info',
+    file: './logs/bot.log'
+  },
+  
+  // Caché
+  cache: {
+    enabled: true,
+    type: 'redis',
+    maxSize: 10000,
+    ttl: 3600,
+    redis: {
+      host: 'localhost',
+      port: 6379
+    }
+  },
+  
+  // Cola
+  queue: {
+    enabled: true,
+    processing: {
+      concurrency: 5,
+      rateLimit: 10,
+      batchSize: 100
+    }
+  },
+  
+  // Métricas
+  metrics: {
+    enabled: true,
+    detailed: true
+  },
+  
+  // IA
+  ai: {
+    enabled: true,
+    provider: 'openai',
+    apiKey: process.env.OPENAI_API_KEY,
+    autoReply: {
+      enabled: true,
+      patterns: [/¿.*\?/, /ayuda/i]
+    }
+  }
+});
+
+// Middleware
+bot.middleware.use(async (ctx, next) => {
+  const start = Date.now();
+  await next();
+  const duration = Date.now() - start;
+  bot.metrics.histogram('message.processing_time', duration);
+});
+
+bot.middleware.use(async (ctx, next) => {
+  console.log(`[${ctx.from}] ${ctx.text}`);
+  await next();
+});
+
+// Inicializar
+await bot.initialize();
+
+// Cargar plugins
+await bot.plugins.loadPlugins(['utils', 'music', 'games']);
+
+// Comandos
+bot.on('message', async (ctx) => {
+  const { text, reply } = ctx;
+  
+  // Stats del bot
+  if (text === '!stats') {
+    const summary = bot.metrics.getSummary();
+    await reply(
+      `📊 Estadísticas del Bot:\n\n` +
+      `⏱️ Uptime: ${formatUptime(summary.system.uptime)}\n` +
+      `💾 Memoria: ${summary.system.memory.used}/${summary.system.memory.total}\n` +
+      `📨 Mensajes recibidos: ${summary.messages.received}\n` +
+      `📤 Mensajes enviados: ${summary.messages.sent}\n` +
+      `✅ Tasa de éxito: ${summary.messages.successRate}%\n` +
+      `💾 Cache hit rate: ${summary.cache.hitRate}%\n` +
+      `📬 Cola: ${summary.queue.waiting} esperando`
+    );
+  }
+});
+
+// Conectar
+await bot.connect();
+
+console.log('✅ Bot iniciado correctamente');
+console.log('📊 Dashboard: http://localhost:3000/metrics');
 ```
 
 ---
 
-# 🔥 Ventajas sobre Baileys Original
+## 🎨 Características Avanzadas
 
-| Característica | Baileys | HepeinBaileys |
-|----------------|---------|---------------|
-| **Estabilidad** | Básica | ⭐ Avanzada con auto-reconexión |
-| **WhatsApp Business** | Limitado | ✅ Soporte completo |
-| **Grandes volúmenes** | ❌ No optimizado | ✅ Optimizado (50-100 msg/s) |
-| **TypeScript** | Parcial | ✅ Tipos completos incluidos |
-| **JavaScript puro** | ✅ Sí | ✅ CommonJS + ES Modules |
-| **Multi-sesión** | ❌ No | 🚧 En desarrollo |
-| **IA integrada** | ❌ No | 🚧 En desarrollo |
-| **Plugins** | ❌ No | 🚧 En desarrollo |
-| **Dashboard** | ❌ No | 🚧 En desarrollo |
-| **Anti-spam** | ❌ No | 🚧 En desarrollo |
-| **Caché inteligente** | ❌ No | ✅ LRU incluido |
-| **Batching** | ❌ No | ✅ Implementado |
+### Reconexión Inteligente
+
+```typescript
+const bot = new HepeinBaileys({
+  connection: {
+    retries: 5,
+    retryDelay: 3000,
+    backoff: 'exponential' // 3s, 6s, 12s, 24s, 48s
+  }
+});
+
+bot.on('connection.update', (update) => {
+  if (update.connection === 'close') {
+    console.log('Conexión cerrada, reconectando...');
+  }
+  if (update.connection === 'open') {
+    console.log('✅ Conectado correctamente');
+  }
+});
+```
+
+### WhatsApp Business
+
+```typescript
+const bot = new HepeinBaileys({
+  business: {
+    enabled: true,
+    profile: {
+      name: 'Mi Negocio',
+      category: 'Tecnología',
+      description: 'Servicios de desarrollo',
+      email: 'contacto@minegocio.com',
+      website: 'https://minegocio.com',
+      address: 'Lima, Perú'
+    }
+  }
+});
+
+// Actualizar perfil
+await bot.business.updateProfile({
+  description: 'Nueva descripción'
+});
+
+// Enviar mensaje de producto
+await bot.sendMessage(jid, {
+  product: {
+    productId: '123',
+    title: 'Mi Producto',
+    description: 'Descripción del producto',
+    price: '100.00',
+    currency: 'PEN',
+    image: Buffer.from(...)
+  }
+});
+```
+
+### Eventos Disponibles
+
+```typescript
+// Mensajes
+bot.on('message', (ctx) => {});
+bot.on('message.text', (ctx) => {});
+bot.on('message.image', (ctx) => {});
+bot.on('message.video', (ctx) => {});
+bot.on('message.audio', (ctx) => {});
+bot.on('message.document', (ctx) => {});
+
+// Grupos
+bot.on('group.join', (ctx) => {});
+bot.on('group.leave', (ctx) => {});
+bot.on('group.promote', (ctx) => {});
+bot.on('group.demote', (ctx) => {});
+bot.on('group.update', (ctx) => {});
+
+// Conexión
+bot.on('connection.update', (update) => {});
+bot.on('connection.error', (error) => {});
+bot.on('qr', (qr) => {});
+
+// Presencia
+bot.on('presence.update', (update) => {});
+
+// Llamadas
+bot.on('call', (call) => {});
+```
 
 ---
 
-# 📊 Benchmarks de Rendimiento
+## 🛠️ Configuración
 
-### Mensajes por segundo
-- **Baileys original:** ~10-15 msg/s
-- **HepeinBaileys:** ~50-100 msg/s ⚡
+### Configuración Completa
 
-### Uso de memoria (1000 mensajes)
-- **Baileys original:** ~200MB
-- **HepeinBaileys:** ~120MB 🎯
+```typescript
+import { HepeinBaileysConfig } from 'hepeinbaileys';
 
-### Tiempo de reconexión
-- **Baileys original:** 10-30 segundos
-- **HepeinBaileys:** 3-8 segundos ⚡
+const config: HepeinBaileysConfig = {
+  // Auth
+  auth: {
+    type: 'multi-file', // 'multi-file' | 'single' | 'database'
+    folder: './auth_info',
+    creds: './creds.json',
+    database: {
+      type: 'mongodb',
+      url: 'mongodb://localhost:27017/whatsapp'
+    }
+  },
+  
+  // Logger
+  logger: {
+    level: 'info', // 'trace' | 'debug' | 'info' | 'warn' | 'error'
+    file: './logs/bot.log',
+    maxSize: '10MB',
+    maxFiles: 5
+  },
+  
+  // Connection
+  connection: {
+    retries: 5,
+    retryDelay: 3000,
+    timeout: 30000,
+    keepAlive: true,
+    backoff: 'exponential'
+  },
+  
+  // Cache
+  cache: {
+    enabled: true,
+    type: 'memory', // 'memory' | 'redis' | 'file'
+    maxSize: 10000,
+    ttl: 3600,
+    redis: {
+      host: 'localhost',
+      port: 6379,
+      password: 'secret',
+      db: 0
+    },
+    file: {
+      path: './cache'
+    }
+  },
+  
+  // Queue
+  queue: {
+    enabled: true,
+    type: 'memory', // 'memory' | 'redis' | 'bullmq'
+    processing: {
+      concurrency: 5,
+      rateLimit: 10,
+      batchSize: 100,
+      batchDelay: 1000
+    },
+    redis: {
+      host: 'localhost',
+      port: 6379
+    }
+  },
+  
+  // Metrics
+  metrics: {
+    enabled: true,
+    detailed: true,
+    interval: 60000,
+    prometheus: {
+      enabled: true,
+      port: 9090
+    }
+  },
+  
+  // AI
+  ai: {
+    enabled: true,
+    provider: 'openai', // 'openai' | 'anthropic' | 'google' | 'custom'
+    apiKey: process.env.OPENAI_API_KEY,
+    model: 'gpt-4',
+    autoReply: {
+      enabled: true,
+      patterns: [/¿.*\?/, /ayuda/i],
+      context: 'Eres un asistente virtual amigable.'
+    },
+    temperature: 0.7,
+    maxTokens: 1000
+  },
+  
+  // Business
+  business: {
+    enabled: false,
+    profile: {
+      name: 'Mi Negocio',
+      category: 'Tecnología',
+      description: 'Descripción',
+      email: 'contact@example.com',
+      website: 'https://example.com',
+      address: 'Dirección'
+    }
+  }
+};
+
+const bot = new HepeinBaileys(config);
+```
+
+### Variables de Entorno
+
+```bash
+# .env
+NODE_ENV=production
+
+# WhatsApp
+WA_AUTH_FOLDER=./auth_info
+WA_LOG_LEVEL=info
+
+# Redis
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=secret
+
+# AI
+OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=sk-ant-...
+GOOGLE_API_KEY=AI...
+
+# Metrics
+METRICS_ENABLED=true
+PROMETHEUS_PORT=9090
+
+# Business
+BUSINESS_ENABLED=false
+BUSINESS_NAME=Mi Negocio
+```
 
 ---
 
-# 🛠️ Compatibilidad
+## 📊 Arquitectura
 
-### ✅ Lenguajes
-- JavaScript CommonJS (`require`)
-- JavaScript ES Modules (`import`)
-- TypeScript (tipos incluidos)
+```
+┌─────────────────────────────────────────────────────────┐
+│                    HepeinBaileys Core                    │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│  ┌───────────────┐  ┌───────────────┐  ┌─────────────┐ │
+│  │  Connection   │  │     Auth      │  │   Logger    │ │
+│  │   Manager     │  │   Manager     │  │   System    │ │
+│  └───────────────┘  └───────────────┘  └─────────────┘ │
+│                                                          │
+├─────────────────────────────────────────────────────────┤
+│                    Services Layer                        │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│  ┌───────────────┐  ┌───────────────┐  ┌─────────────┐ │
+│  │     Cache     │  │     Queue     │  │   Metrics   │ │
+│  │    Manager    │  │    Manager    │  │   Manager   │ │
+│  └───────────────┘  └───────────────┘  └─────────────┘ │
+│                                                          │
+│  ┌───────────────┐  ┌───────────────┐  ┌─────────────┐ │
+│  │  AI Service   │  │    Plugin     │  │    Group    │ │
+│  │  (Multi-LLM)  │  │    Manager    │  │   Handler   │ │
+│  └───────────────┘  └───────────────┘  └─────────────┘ │
+│                                                          │
+├─────────────────────────────────────────────────────────┤
+│                   Processing Layer                       │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│  ┌───────────────┐  ┌───────────────┐  ┌─────────────┐ │
+│  │  Middleware   │  │   Message     │  │   Event     │ │
+│  │     Stack     │  │   Handler     │  │  Emitter    │ │
+│  └───────────────┘  └───────────────┘  └─────────────┘ │
+│                                                          │
+├─────────────────────────────────────────────────────────┤
+│                   Utils & Helpers                        │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│  Validators  │  Formatters  │  Crypto  │  File Utils   │
+│                                                          │
+└─────────────────────────────────────────────────────────┘
+```
 
-### ✅ Plataformas
-- Windows (32/64 bits)
-- Linux (Ubuntu, Debian, CentOS, etc.)
-- macOS (Intel y Apple Silicon)
-- Docker
-- Cloud (AWS, Azure, GCP, Heroku, Railway)
+### Flujo de Mensajes
 
-### ✅ Node.js
-- Node.js 18.x ✅
-- Node.js 20.x ✅
-- Node.js 22.x ✅
+```
+1. WhatsApp → Baileys Socket
+2. Socket → Connection Manager
+3. Connection Manager → Message Handler
+4. Message Handler → Middleware Stack
+   ├─ Logging Middleware
+   ├─ Auth Middleware
+   ├─ Rate Limit Middleware
+   └─ Custom Middleware
+5. Middleware → Cache Check
+6. Cache → AI Service (si aplica)
+7. AI Service → Plugin Manager (si aplica)
+8. Plugin Manager → User Handler
+9. User Handler → Response
+10. Response → Queue Manager
+11. Queue → Socket
+12. Socket → WhatsApp
+```
 
 ---
 
-# 📚 Documentación y Recursos
+## 🧪 Testing
 
-- 📖 [Documentación oficial de Baileys](https://github.com/WhiskeySockets/Baileys)
-- 💬 [Únete a nuestra comunidad](#) (próximamente)
-- 🐛 [Reportar un bug](https://github.com/Brashkie/HepeinBaileys/issues)
-- ✨ [Solicitar una feature](https://github.com/Brashkie/HepeinBaileys/issues)
+### Ejecutar Tests
+
+```bash
+# Todos los tests
+npm test
+
+# Tests unitarios
+npm run test:unit
+
+# Tests de integración
+npm run test:integration
+
+# Tests E2E
+npm run test:e2e
+
+# Coverage
+npm run test:coverage
+
+# Watch mode
+npm run test:watch
+```
+
+### Estructura de Tests
+
+```
+tests/
+├── unit/
+│   ├── cache.test.ts           # 15 tests
+│   ├── queue.test.ts           # 15 tests
+│   ├── metrics.test.ts         # 20 tests
+│   └── middleware.test.ts      # 15 tests
+├── integration/
+│   ├── connection.test.ts
+│   └── messaging.test.ts
+└── e2e/
+    └── bot.test.ts
+```
+
+### Coverage
+
+```
+Coverage Summary:
+- Lines: 75%
+- Functions: 72%
+- Branches: 68%
+- Statements: 75%
+```
 
 ---
 
-# 🤝 Contribuir
+## 🤝 Contribuir
 
-¡Las contribuciones son bienvenidas! Si quieres mejorar HepeinBaileys:
+¡Las contribuciones son bienvenidas! 🎉
+
+### Cómo Contribuir
 
 1. **Fork** el repositorio
-2. Crea una **rama** (`git checkout -b feature/MiFeature`)
-3. **Commit** tus cambios (`git commit -m 'Add: nueva feature'`)
-4. **Push** (`git push origin feature/MiFeature`)
-5. Abre un **Pull Request**
+2. **Crea** una rama para tu feature (`git checkout -b feature/amazing-feature`)
+3. **Commit** tus cambios (`git commit -m 'feat: add amazing feature'`)
+4. **Push** a la rama (`git push origin feature/amazing-feature`)
+5. **Abre** un Pull Request
+
+### Guidelines
+
+- Escribe tests para nuevas funcionalidades
+- Mantén el código limpio y documentado
+- Sigue el estilo de código existente
+- Actualiza la documentación si es necesario
+
+### Reportar Bugs
+
+Abre un issue con:
+- Descripción clara del problema
+- Pasos para reproducir
+- Versión de Node.js y HepeinBaileys
+- Logs relevantes
 
 ---
 
-# 📄 Licencia
+## 📄 Licencia
 
-Este proyecto está bajo la **Licencia MIT**. Ver [LICENSE](LICENSE) para más información.
-
----
-
-# 🙏 Agradecimientos
-
-- **Baileys** - Por la base sólida del proyecto
-- **WhatsApp Web API** - Por hacer posible la integración
-- **Comunidad Open Source** - Por el apoyo constante
+MIT License - Ver [LICENSE](LICENSE) para más detalles.
 
 ---
 
-# 📬 Contacto
+## 🙏 Créditos
 
-**Brashkie** - [@Brashkie](https://github.com/Brashkie)  
-**Hepein Oficial** - Organización de desarrollo
-
-**Link del proyecto:** [https://github.com/Brashkie/HepeinBaileys](https://github.com/Brashkie/HepeinBaileys)
+- **Baileys** - Biblioteca base de WhatsApp Web
+- **@whiskeysockets** - Creador original de Baileys
+- **Brashkie** - Creador de HepeinBaileys
+- **Hepein Oficial** - Marca tecnológica
 
 ---
 
-<p align="center">
-  <strong>⭐ Si te gusta HepeinBaileys, dale una estrella en GitHub ⭐</strong>
-</p>
+## 🔗 Links
 
-<p align="center">
-  <em>Hecho con ❤️ por <a href="https://github.com/Brashkie">Brashkie</a> y la comunidad</em>
-</p>
+- 📚 [Documentación Completa](https://brashkie.github.io/HepeinBaileys)
+- 💬 [Discord](https://discord.gg/hepein)
+- 🐛 [Reportar Bug](https://github.com/Brashkie/HepeinBaileys/issues)
+- ⭐ [GitHub](https://github.com/Brashkie/HepeinBaileys)
+- 📦 [NPM](https://www.npmjs.com/package/hepeinbaileys)
+
+---
+
+## 📞 Soporte
+
+¿Necesitas ayuda? Contáctanos:
+
+- 📧 Email: soporte@hepein.com
+- 💬 Discord: [Hepein Community](https://discord.gg/hepein)
+- 🐦 Twitter: [@HepeinOficial](https://twitter.com/HepeinOficial)
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [Brashkie](https://github.com/Brashkie) | [Hepein Oficial](https://hepein.com)**
+
+⭐ Si te gusta el proyecto, dale una estrella en GitHub!
+
+</div>
