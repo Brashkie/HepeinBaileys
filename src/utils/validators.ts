@@ -540,8 +540,8 @@ export class DateUtils {
 export {
   WhatsAppValidator as Validator,
   WhatsAppFormatter as Formatter,
-  MessageValidator,
-  TextUtils,
-  ArrayUtils,
-  DateUtils,
+  //MessageValidator,
+  //TextUtils,
+  //ArrayUtils,
+  //DateUtils,
 };
