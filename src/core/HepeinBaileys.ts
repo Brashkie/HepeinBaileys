@@ -384,7 +384,7 @@ export class HepeinBaileys extends EventEmitter {
         isGroup: from.endsWith('@g.us'),
         isBusiness: await this.isBusinessAccount(from),
         fromMe: msg.key.fromMe || false,
-        participant: msg.participant,
+        participant: msg.participant ?? undefined,
       },
       state: {},
       reply: async (message: string | proto.IMessage) => {
